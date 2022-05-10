@@ -41,6 +41,10 @@ image:
     snapshotter:
       repository: longhornio/csi-snapshotter
       tag: v3.0.3
+  openshift:
+    oauthProxy:
+      repository: openshift/oauth-proxy
+      tag: latest
   pullPolicy: IfNotPresent
 
 service:
@@ -50,6 +54,8 @@ service:
   manager:
     type: ClusterIP
     nodePort: ""
+    loadBalancerIP: ""
+    loadBalancerSourceRanges: ""
 
 persistence:
   defaultClass: true
@@ -226,3 +232,16 @@ namespaceOverride: ""
 
 # Annotations to add to the Longhorn Manager DaemonSet Pods. Optional.
 annotations: {}
+
+serviceAccount:
+  # Annotations to add to the service account
+  annotations: {}
+
+## openshift settings
+openshift: {}
+#  ui:
+#    route: "longhorn-ui"
+#    port: 443
+#    proxy: 8443
+#  finalizers: true
+#  mount: "/var/mnt/longhorn"
